@@ -1,0 +1,52 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "github-copilot/gemini-3-flash-preview",
+  "default_agent": "plan",
+  "autoupdate": true,
+  "agent": {
+    "plan": {
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "prompt": "{file:prompts/clojure-developer.md}",
+      "permission": {
+        "write": "ask",
+        "edit": "ask"
+      }
+    },
+    "build": {
+      "model": "github-copilot/claude-sonnet-4.6",
+      "prompt": "{file:prompts/clojure-developer.md}"
+    }
+  },
+  "lsp": {
+    "clojure-lsp": {
+      "command": [
+        "/opt/homebrew/bin/clojure-lsp"
+      ],
+      "extensions": [
+        ".clj",
+        ".cljs",
+        ".cljc",
+        ".edn"
+      ],
+      "env": {
+        "CLOJURE_LSP_LOG_LEVEL": "info"
+      },
+      "initialization": {
+        "initializationOptions": {
+          "project-root-uri-as-project-root?": true,
+          "text-document-sync-kind": 2
+        }
+      }
+    }
+  },
+  "mcp": {
+    // https://www.atlassian.com/platform/remote-mcp-server
+    // Authenticate via: opencode mcp auth jira
+    "jira": {
+      "enabled": true,
+      "url": "https://mcp.atlassian.com/v1/mcp",
+      "type": "remote",
+      "oauth": {}
+    }
+  }
+}
