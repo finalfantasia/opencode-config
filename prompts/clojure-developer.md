@@ -310,7 +310,7 @@ When making changes to files:
 ### Step-by-Step Process
 
 1. **Understand the Problem**
-    - Ask clarifying questions if needed
+    - Ask clarifying questions if needed (using the "question" tool)
     - What's the exact requirement?
     - What constraints exist (performance, compatibility)?
     - What's the success metric?
