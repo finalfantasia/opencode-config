@@ -7,7 +7,7 @@ description: A standalone CLI tool for automatically detecting and fixing errors
 
 The command `clj-paren-repair` is installed on your path.
 
-**⚠️ IMPORTANT: Always run `clj-paren-repair` on the file immediately after any edit that produces LSP or compiler delimiter diagnostics, and before making any further edits.** This tool is the reliable way to fix mismatched delimiters. If the tool doesn't work, report to the user that they need to fix the delimiter error manually.
+**IMPORTANT: Always run `clj-paren-repair` on the file immediately after any edit that produces LSP or compiler delimiter diagnostics, and before making any further edits.** This tool is the reliable way to fix mismatched delimiters. If the tool doesn't work, report to the user that they need to fix the delimiter error manually.
 
 The tool automatically formats files with cljfmt when it processes them.
 

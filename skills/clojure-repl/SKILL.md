@@ -1,11 +1,7 @@
 ---
 name: clojure-repl
 description: |
-  Guide for REPL-driven development in Clojure. Use when working
-  interactively, testing code, exploring libraries, looking up documentation,
-  debugging exceptions, or developing iteratively. Covers clojure.repl utilities
-  for exploration, debugging, and iterative development. Essential for the
-  Clojure development workflow.
+  Guide for REPL-driven development in Clojure. Use when working interactively, testing code, exploring libraries, looking up documentation, debugging exceptions, or developing iteratively. Covers clojure.repl utilities for exploration, debugging, and iterative development. Essential for the Clojure development workflow.
 ---
 
 # Clojure REPL
@@ -14,8 +10,7 @@ description: |
 
 **The REPL is your primary development environment, not a secondary tool.**
 
-Before reading or editing any file, ask: "Can I test this in the REPL first?" 
-The answer is almost always YES.
+Before reading or editing any file, ask: "Can I test this in the REPL first?" The answer is almost always YES.
 
 ### When to Use REPL
 

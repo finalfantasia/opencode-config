@@ -156,7 +156,7 @@ clj-nrepl-eval --discover-ports
 ## Sources
 
 - Local skill docs in [`skills/`](skills/)
-- `clojure-mcp-light` README: https://github.com/bhauman/clojure-mcp-light/blob/main/README.md
+- clojure-mcp-light README: https://github.com/bhauman/clojure-mcp-light/blob/main/README.md
 - Babashka README: https://github.com/babashka/babashka/blob/master/README.md
 - bbin README: https://github.com/babashka/bbin/blob/main/README.md
 

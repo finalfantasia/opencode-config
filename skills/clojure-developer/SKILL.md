@@ -1,11 +1,7 @@
 ---
 name: clojure-developer
 description: |
-  Use when the task is general Clojure software development rather than a
-  narrow subtask: implementing features, debugging behavior, refactoring code,
-  reviewing Clojure changes, or guiding REPL-driven development. This skill
-  coordinates the Clojure workflow and directs you to clojure-eval,
-  clojure-repl, and clojure-delimiter-repair as needed.
+  Use when the task is general Clojure software development rather than a narrow subtask: implementing features, debugging behavior, refactoring code, reviewing Clojure changes, or guiding REPL-driven development. This skill coordinates the Clojure workflow and directs you to clojure-eval, clojure-repl, and clojure-delimiter-repair as needed.
 ---
 
 # Clojure Developer
