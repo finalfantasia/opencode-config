@@ -1,7 +1,7 @@
 ---
 name: clojure-developer
 description: |
-  Use when the task is general Clojure software engineering rather than a
+  Use when the task is general Clojure software development rather than a
   narrow subtask: implementing features, debugging behavior, refactoring code,
   reviewing Clojure changes, or guiding REPL-driven development. This skill
   coordinates the Clojure workflow and directs you to clojure-eval,
@@ -10,14 +10,14 @@ description: |
 
 # Clojure Developer
 
-This skill is the top-level workflow for Clojure engineering tasks.
+This skill is the top-level workflow for Clojure development tasks.
 
 For coding work, follow this sequence:
 
-1. Explore the code and understand the target namespace before editing.
-2. Use [clojure-eval](../clojure-eval/SKILL.md) first to verify assumptions in a running REPL.
+1. Explore and understand existing code
+2. Use [clojure-eval](../clojure-eval/SKILL.md) first to prototype behavior and verify assumptions in a running REPL.
 3. Use [clojure-repl](../clojure-repl/SKILL.md) for interactive exploration patterns such as `doc`, `source`, `dir`, edge-case checks, and iterative debugging.
-4. Edit files only after the behavior is understood or the change has been prototyped in the REPL.
+4. Edit files only after behavior and assumptions have been prototyped and verified in the REPL.
 5. If an edit introduces delimiter errors, run [clojure-delimiter-repair](../clojure-delimiter-repair/SKILL.md) immediately before making further edits.
 6. Reload the namespace and verify the final behavior in the REPL after each meaningful change.
 

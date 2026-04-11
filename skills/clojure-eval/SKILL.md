@@ -28,6 +28,8 @@ The `clj-nrepl-eval` command evaluates Clojure code against an nREPL server. **S
 
 ### 0. Discover and select nREPL server
 
+#### Non-sandboxed environments
+
 First, discover what nREPL servers are running in the current directory:
 
 ```bash
@@ -36,24 +38,30 @@ clj-nrepl-eval --discover-ports
 
 This will show all nREPL servers (Clojure, Babashka, shadow-cljs, etc.) running in the current project directory.
 
-- **If ports are discovered:** Prompt user to select which nREPL port to use:
-  - **question:** "Which nREPL port would you like to use?"
-  - **header:** "nREPL Port"
-  - **options:** Present each discovered port as an option with:
-    - **label:** The port number 
-    - **description:** The server type and status (e.g., "Clojure nREPL server in current directory")
-  - Include up to 4 discovered ports as options
-  - The user can select "Other" to enter a custom port number
+#### Sandboxed environments
 
-- **If no ports are discovered:** Prompt user how to start an nREPL server:
-  - **question:** "No nREPL servers found. How would you like to start one?"
-  - **header:** "Start nREPL"
-  - **options:**
-    - **label:** "deps.edn alias", **description:** "Find and use an nREPL alias in deps.edn"
-    - **label:** "Leiningen", **description:** "Start nREPL using 'lein repl'"
-  - The user can select "Other" for alternative methods or if they already have a server running on a specific port
+In sandboxed environments, connecting to an already running local nREPL server may fail with `java.net.SocketException: Operation not permitted`, even when the server is healthy and `.nrepl-port` is correct. Treat this as a sandbox socket restriction, not as evidence that the REPL is missing.
 
-IMPORTANT: IF you start a REPL do not supply a port let the nREPL start and return the port that it was started on.
+When discovery cannot work because you are inside a sandbox, or when discovery returns nothing but the project clearly has a running REPL, fall back to the manual nREPL port-file checks.
+
+Check whether the current directory has a conventional nREPL port file:
+
+```bash
+sed -n '1p' .nrepl-port
+```
+
+If `.nrepl-port` exists, try that port. This is the standard signal that a project already has a running nREPL server.
+
+For shadow-cljs projects, also check the port files under `.shadow-cljs/`:
+
+```bash
+sed -n '1p' .shadow-cljs/nrepl.port
+sed -n '1p' .shadow-cljs/socket-repl.port
+```
+
+Use `.shadow-cljs/nrepl.port` with `clj-nrepl-eval -p <PORT>`.
+
+If connecting to a port fails with a sandbox socket restriction, rerun the same `clj-nrepl-eval -p <PORT> ...` command with escalated permissions and use the prefix rule `["clj-nrepl-eval", "-p"]` so future nREPL evaluations can connect without repeated approval prompts.
 
 ### 1. Evaluate Clojure Code
 
@@ -153,7 +161,7 @@ clj-nrepl-eval -p <PORT> --reset-session "(def x 1)"
 
 ## Important Notes
 
-- **Prefer command-line arguments:** Pass code as quoted strings: `clj-nrepl-eval -p <PORT> "(+ 1 2 3)"` - works with existing permissions
+- **Prefer command-line arguments:** Pass code as quoted strings: `clj-nrepl-eval -p <PORT> "(+ 1 2 3)"`. This should work with existing permissions; if not (e.g., inside a sandbox), run with escalated permissions as described above.
 - **Heredoc for complex code:** Use heredoc (`<<'EOF' ... EOF`) for truly multiline code, but note it may require permission approval
 - **Sessions persist:** State (vars, namespaces, loaded libraries) persists across invocations until the nREPL server restarts or `--reset-session` is used
 - **Automatic delimiter repair:** The tool automatically repairs missing or mismatched parentheses
